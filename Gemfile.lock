@@ -47,7 +47,7 @@ PLATFORMS
 
 DEPENDENCIES
   metadata-json-lint
-  puppet (~> 4.7)
+  puppet (~> 4.7.0)
   puppet-lint
   puppetlabs_spec_helper
   rake
