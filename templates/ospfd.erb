@@ -6,6 +6,12 @@ interface <%= name %>
   <%- if opt['area'] -%>
   ip ospf area <%= opt['area'] %>
   <%- end -%>
+  <%- if opt['authentication'] -%>
+  ip ospf authentication <%= opt['authentication'] %>
+  <%- end -%>
+  <%- if opt['message-digest-key'] -%>
+  ip ospf message-digest-key <%= opt['message-digest-key'] %>
+  <%- end -%>
 <%-   end
     end -%>
 !
@@ -13,7 +19,7 @@ router ospf
   ospf router-id <%= @router_id %>
   auto-cost reference-bandwidth <%= @ospf_ref_bw %>
 <%- @ospf_areas.each do |area, opt| -%>
-  area <%= area %><%= opt['range'] && " range #{opt['range']}" %>
+  area <%= area %><%= opt['range'] && " range #{opt['range']}" %><%= opt['authentication'] && " authentication #{opt['authentication']}" %>
 <%- end -%>
 <%- @redistribute.each do |type, opt| -%>
   redistribute <%= type %><%= opt['route_map'] && " route-map #{opt['route_map']}" %>
